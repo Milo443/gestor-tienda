@@ -4,3 +4,5 @@ from django.db import models
 
 #creacion de los modelos de la tienda
 
+#cliente
+
