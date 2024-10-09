@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Verify Token</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -12,19 +12,22 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="text-center">Login</h3>
+                        <h3 class="text-center">Verify Token</h3>
                     </div>
                     <div class="card-body">
                         <form method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="email">Email address</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+                                <label for="token">Token</label>
+                                <input type="text" class="form-control" id="token" name="token" placeholder="Enter token" required>
+                                {% if form.token.errors %}
+                                    <div class="text-danger">{{ form.token.errors }}</div>
+                                {% endif %}
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block">Send Token</button>
+                            <button type="submit" class="btn btn-primary btn-block">Verify Token</button>
                         </form>
                         <div class="text-center mt-3">
-                            <a href="/register" class="btn btn-link">Register</a>
+                            <a href="/login" class="btn btn-link">Back to Login</a>
                         </div>
                     </div>
                 </div>
