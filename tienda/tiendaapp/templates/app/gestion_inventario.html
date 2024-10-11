@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Gestión de Inventario{% endblock %}
+
+{% block content %}
+
+{%load static%}
+
+<div class="container">
+    <div class="row">
+        
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+                {% comment %} <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}"> {% endcomment %}
+                <img src="{% static 'tiendaap/images/mouse.jpeg'%}" class="card-img-top" alt="{{ producto.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">nombre de producto</h5>
+                    <p class="card-text">descripcion del producto</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">80000 $</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card mb-4 shadow-sm">
+                {% comment %} <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}"> {% endcomment %}
+                <img src="{% static 'tiendaap/images/mouse.jpeg'%}" class="card-img-top" alt="{{ producto.nombre }}">
+                <div class="card-body">
+                    <h5 class="card-title">nombre de producto</h5>
+                    <p class="card-text">descripcion del producto</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">80000 $</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

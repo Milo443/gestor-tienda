@@ -2,7 +2,10 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from django.utils.crypto import get_random_string
-from .form import RegistrationForm, LoginForm
+from django.contrib.auth import login as auth_login, logout as auth_logout
+from django.contrib.auth import authenticate
+
+from django.contrib.auth.decorators import login_required
 from .models import Token
 
 # Create your views here.
@@ -35,9 +38,14 @@ def verify_token(request, email):
             if token_obj:
                 token_obj.delete()
                 # Log in the user
-                return redirect('main')
+                auth_login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                return redirect('dashboard')
     return render(request, 'verify_token.html', {'email': email})
 
+#logout
+def logout(request):
+    auth_logout(request)
+    return redirect('login')
 
 def register(request):
     if request.method == 'POST':
@@ -67,7 +75,13 @@ def register(request):
 
 
 
-#main
+#vistas de la app de tienda
 
-def main(request):
-    return render(request, 'main.html')
+#dashboard
+@login_required
+def dashboard(request):
+    return render(request, 'app/dashboard.html')
+
+@login_required
+def gestion_inventario(request):
+    return render(request, 'app/gestion_inventario.html')

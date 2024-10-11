@@ -8,10 +8,11 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="container mt-3">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card mt-5">
+                <div class="card text-white bg-dark" style="width:100%">
+                    <img src="https://i.ibb.co/rH09jDB/Designer.jpg" alt="forest" style="width: 100%">
                     <div class="card-header">
                         <h3 class="text-center">Register</h3>
                     </div>
@@ -19,11 +20,11 @@
                         <form method="post">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="username">Username</label>
+                                {% comment %} <label for="username">Username</label> {% endcomment %}
                                 <input type="text" class="form-control" id="username"  name="username" placeholder="Enter username">
                             </div>
                             <div class="form-group">
-                                <label for="email">Email address</label>
+                                {% comment %} <label for="email">Email address</label> {% endcomment %}
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
                             </div>
                             
@@ -40,5 +41,18 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        body {
+            background: rgb(2,0,36);
+            background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); 
+        }
+        .card{
+            border: 0px solid black;
+            box-shadow: 0px 0px 50px black;
+            
+        }
+
+    </style>
 </body>
 </html>

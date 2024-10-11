@@ -21,10 +21,14 @@ from tiendaapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('', views.dashboard, name='dashboard'),
+
     path('register/', views.register, name='register'),
     path('login/', views.login, name='login'),
     path('verify_token/<str:email>/', views.verify_token, name='verify_token'),
+    path('logout/', views.logout, name='logout'),
     # path('', views.inicio, name='inicio'),
 
-    path('', views.main, name='main'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('gestion_inventario/', views.gestion_inventario, name='gestion_inventario'),
 ]
