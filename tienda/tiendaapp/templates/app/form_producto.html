@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Formulario de prodcuto{% endblock %}
+
+{% block content %}
+
+{%load static%}
+
+    <div class="container mt-5">
+        <h1><i class="fas fa-boxes"></i> Creacion Producto</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h3>Crear Producto</h3>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" value="{{producto.nombre}}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required>{{producto.descripcion}}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" id="cantidad" name="cantidad" value="{{producto.existencia}}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" step="0.01" class="form-control" id="precio" name="precio" value="{{producto.precio}}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen</label>
+                        
+                        {%if producto.imagen.url%}
+                            <input type="file" class="form-control" id="imagen" name="imagen" onchange="previewImage(event)">
+                        {%else%}
+                            <input type="file" class="form-control" id="imagen" name="imagen" onchange="previewImage(event)" required>
+                        {%endif%}
+
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-check"></i> Guardar
+                    </button>
+
+                        
+                    </div>
+            <div class="col-md-6 mx-auto">
+                {%if producto.imagen.url %}
+                    <img src="{{producto.imagen.url}}" id="preview" class="img-thumbnail" alt="{{producto.nombre}}" style="width: 400px; ">
+                {%else%}
+                    
+                    <img src="{%if producto.imagen.url %}{{producto.imagen.url}} {%else%} {% static 'tiendaap/images/no-images.png'%} {%endif%}" id="preview" class="img-thumbnail" alt="{{producto.nombre}}" style="width: 400px; ">
+                    {% comment %} <img src="{% static 'tiendaap/images/no-images.png'%}" id="preview" class="img-thumbnail" alt="No image" style="width: 400px;"> {% endcomment %}
+
+                {%endif%}
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById('preview');
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+    </script>
+
+
+{% endblock %}

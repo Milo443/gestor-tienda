@@ -9,6 +9,7 @@
 
 a {
     text-decoration: none;
+    
 }
 
 li {
@@ -101,6 +102,7 @@ a.sidebar-link {
     font-size: 0.9rem;
     white-space: nowrap;
     border-left: 3px solid transparent;
+    transition: all .2s ease-out;
 }
 
 .sidebar-link i {
@@ -125,6 +127,7 @@ a.sidebar-link:hover {
     padding: 0;
     min-width: 15rem;
     display: none;
+    transition: all .2s ease-out;
 }
 
 #sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
@@ -132,9 +135,18 @@ a.sidebar-link:hover {
     max-height: 15em;
     width: 100%;
     opacity: 1;
+    transition: all .2s ease-out;
 }
 
-#sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
+#sidebar.expand .sidebar-item:hover .sidebar-dropdown {
+    display: block;
+    max-height: 15em;
+    width: 100%;
+    opacity: 1;
+    transition: all .2s ease-out;
+}
+
+/* #sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
     border: solid;
     border-width: 0 .075rem .075rem 0;
     content: "";
@@ -145,7 +157,7 @@ a.sidebar-link:hover {
     top: 1.4rem;
     transform: rotate(-135deg);
     transition: all .2s ease-out;
-}
+} */
 
 
 #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
@@ -153,4 +165,4 @@ a.sidebar-link:hover {
     transition: all .2s ease-out;
 }
 
-
+ 

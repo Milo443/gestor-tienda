@@ -1,41 +1,65 @@
 {% extends 'base.html' %}
 
+
 {% block title %}Gestión de Inventario{% endblock %}
 
 {% block content %}
 
 {%load static%}
 
-<div class="container">
+{% load humanize %}
+
+<div class="container mt-5">
+    <h1><i class="fas fa-boxes"></i> Gestión de Inventario</h1>
+
+    <form class="d-flex mb-4" method="GET" action="{% url 'gestion_inventario' %}">
+        <input class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Buscar" name="buscar">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+        <a href="{% url 'gestion_inventario'%}" class="btn btn-outline-danger">
+            <i class="fas fa-times"></i>
+        </a>
+    </form>
     <div class="row">
-        
         <div class="col-md-3">
-            <div class="card mb-4 shadow-sm">
+            <div class="card mb-4 shadow-sm" style="border-style:dashed; border-width:3px;">
                 {% comment %} <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}"> {% endcomment %}
-                <img src="{% static 'tiendaap/images/mouse.jpeg'%}" class="card-img-top" alt="{{ producto.nombre }}">
-                <div class="card-body">
-                    <h5 class="card-title">nombre de producto</h5>
-                    <p class="card-text">descripcion del producto</p>
+                <a href="{% url 'form_producto'%}" style='text-decoration:none; color: inherit;'>
+                <img src="{% static 'tiendaap/images/icon-mas.jpeg'%}" class="card-img-top" alt="agregar">
+                <div class="card-body text-center">
+                    <h5 class="card-title" style="color: gray">Agregar Producto</h5>
+                    <p class="card-text">&nbsp;</p>
                     <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">80000 $</small>
+                        <small class="text-muted">&nbsp;</small>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
 
+        {%for producto in productos %}
         <div class="col-md-3">
-            <div class="card mb-4 shadow-sm">
-                {% comment %} <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}"> {% endcomment %}
-                <img src="{% static 'tiendaap/images/mouse.jpeg'%}" class="card-img-top" alt="{{ producto.nombre }}">
+            <div class="card mb-4 shadow-sm" id="producto">
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}" style="height:250px;">
+                {% comment %} <img src="{% static 'tiendaap/images/mouse.jpeg'%}" class="card-img-top" alt="{{ producto.nombre }}"> {% endcomment %}
                 <div class="card-body">
-                    <h5 class="card-title">nombre de producto</h5>
-                    <p class="card-text">descripcion del producto</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <small class="text-muted">80000 $</small>
+                    <h5 class="card-title">{{producto.nombre}}</h5>
+                    <p class="card-text">{{producto.descripcion}}</p>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <small class="text-muted">Cant. {{producto.existencia}}</small>
+                        <small class="text-muted">$ {{ producto.precio|intcomma }}</small>
+                    </div>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <a href="{% url 'editar_producto' producto.id %}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                        <a href="{% url 'eliminar_producto' producto.id %}" class="btn btn-danger btn-sm ml-1">
+                            <i class="fas fa-trash"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+        {%endfor%}
     </div>
 </div>
 

@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from tiendaapp import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,5 +32,28 @@ urlpatterns = [
     # path('', views.inicio, name='inicio'),
 
     path('dashboard/', views.dashboard, name='dashboard'),
+
+#gestion de inventario
     path('gestion_inventario/', views.gestion_inventario, name='gestion_inventario'),
+    path('form_producto/', views.form_producto, name='form_producto'),
+    path('editar_producto/<int:id>/', views.editar_producto, name='editar_producto'),
+    path('eliminar_producto/<int:id>/', views.eliminar_producto, name='eliminar_producto'),
+
+#cliente
+    path('cliente/', views.cliente, name='cliente'),
+    path('form_cliente/', views.form_cliente, name='form_cliente'),
+    path('editar_cliente/<int:id>/', views.editar_cliente, name='editar_cliente'),
+    path('eliminar_cliente/<int:id>/', views.eliminar_cliente, name='eliminar_cliente'),
+
+#ventas
+    path('ventas/', views.ventas, name='ventas'),
+    path('form_venta/', views.form_venta, name='form_venta'),
+
+#reservas
+    path('reservas/', views.reservas, name='reservas'),
+
+
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

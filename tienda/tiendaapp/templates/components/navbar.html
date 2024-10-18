@@ -1,36 +1,3 @@
-{% comment %} <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
-        <img src="https://i.ibb.co/rm097ZS/Designer-2.jpg" alt="Logo" style="height: 40px; border-radius:100px">
-        TiendaApp
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'main'%}">
-                    <i class="fas fa-home"></i> Inicio
-                </a>
-            </li>
-
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'panel' %}">
-                    <i class="fas fa-cogs"></i> Panel de Control
-                </a>
-            </li>
-            {% comment %} <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li> 
-        </ul>
-    </div>
-</nav> {% endcomment %}
 <div class='wrapper'>
     <aside id='sidebar'>
         <div class='d-flex'>
@@ -57,15 +24,33 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            {% comment %} <li class="sidebar-item">
                 <a href="#" class="sidebar-link">
                     <i class="fas fa-shopping-cart"></i> 
                     <span>Ventas y Reservas<span>
                 </a>
-            </li>
+            </li> {% endcomment %}
 
             <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
+                <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                    data-bs-target="#cart" aria-expanded="false" aria-controls="cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Ventas y Reservas</span>
+                </a>
+                <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    <li class="sidebar-item">
+                        <a href="{% url 'ventas' %}" class="sidebar-link">Ventas</a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="{% url 'reservas' %}" class="sidebar-link">Reservas</a>
+                    </li>
+                </ul>
+            </li>
+
+
+
+            <li class="sidebar-item">
+                <a href="{%url 'cliente'%}" class="sidebar-link">
                     <i class="fas fa-users"></i> 
                     <span>Clientes y Credito<span>
                 </a>
