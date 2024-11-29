@@ -1,0 +1,35 @@
+{%extends 'base.html' %}
+{% block title %}Detalle venta{% endblock %}
+
+{% block content %}
+
+{% load static %}
+{% load humanize %}
+
+<div class="container mt-5">
+    <h1 class="">Detalle venta</h1>
+    
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody class="table-light text-dark">
+            {% for detalle in venta_detalle %}
+            <tr>
+                <td>{{ detalle.producto }}</td>
+                <td>{{ detalle.cantidad }}</td>
+                <td>{{ detalle.precio|intcomma }}</td>
+                <td>{{ detalle.subtotal|intcomma }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

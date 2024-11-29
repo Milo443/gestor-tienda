@@ -25,7 +25,7 @@ class Cliente(models.Model):
     email = models.EmailField()
     telefono = models.CharField(max_length=10)
     limite = models.DecimalField(max_digits=100, decimal_places=2, default=0)
-    saldo = models.DecimalField(max_digits=100, decimal_places=2, default=0, null=True)
+    saldo = models.DecimalField(max_digits=100, decimal_places=2, default=0, null=False)
 
     def __str__(self):
         return self.nombre
@@ -41,7 +41,7 @@ class CuentaCredito(models.Model):
 
 #venta
 class Venta(models.Model):
-    fecha = models.DateTimeField(auto_now_add=True)
+    fecha = models.DateTimeField(auto_now=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     total = models.DecimalField(max_digits=10, decimal_places=2, default=0,null=True)
     observaciones = models.TextField(null=True)
@@ -61,7 +61,7 @@ class DetalleVenta(models.Model):
         super(DetalleVenta, self).save(*args, **kwargs)
 
     def __str__(self):
-        return f"({self.producto.nombre} (x{self.cantidad})"
+         return f"{self.producto.nombre} - {self.cantidad}"
         
 #reserva
 class Reserva(models.Model):

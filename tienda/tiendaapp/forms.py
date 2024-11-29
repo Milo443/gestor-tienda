@@ -1,5 +1,5 @@
 from django import forms
-from .models import Venta, DetalleVenta, Producto, Cliente, Venta
+from .models import Venta, DetalleVenta, Venta
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=10, required=True)
@@ -14,7 +14,18 @@ class TokenForm(forms.Form):
 class VentaForm(forms.ModelForm):
     class Meta:
         model = Venta
-        fields = ['cliente']
+        fields = ['cliente', 'pago_contra_entrega']
+        widgets = {
+            'cliente': forms.Select(attrs={'class': 'form-control'}),
+            'pago_contra_entrega': forms.CheckboxInput(attrs={'class':'form-control'})
+        }
 
-DetalleFormSet = forms.inlineformset_factory(Venta, DetalleVenta, fields=('producto', 'cantidad'), extra=1, can_delete=True)
+DetalleFormSet = forms.inlineformset_factory(Venta, DetalleVenta, 
+                                             fields=('producto', 'cantidad'), extra=1, can_delete=True,
+                                             widgets = 
+                                                {
+                                                    'producto': forms.Select(attrs={'class': 'form-control'}),
+                                                    'cantidad': forms.NumberInput(attrs={'class': 'form-control'}),
+                                                }
+                                            )
     

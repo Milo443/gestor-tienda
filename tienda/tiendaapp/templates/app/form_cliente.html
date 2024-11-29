@@ -51,7 +51,11 @@
 
                 <div class="mb-3">
                     <label for="saldo-credito" class="form-label">Saldo credito</label>
+                    {% if cliente.saldo%}
                     <input type="number" class="form-control" id="saldo_credito" name="saldo_credito" value="{{cliente.saldo}}" disabled>
+                    {% else %}
+                    <input type="number" class="form-control" id="saldo_credito" name="saldo_credito" value="0" disabled>
+                    {% endif %}
                 </div>
                 <button type="submit" class="btn btn-primary mt-3">
                     <i class="fas fa-save"></i>

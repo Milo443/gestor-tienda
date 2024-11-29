@@ -48,6 +48,8 @@ urlpatterns = [
 #ventas
     path('ventas/', views.ventas, name='ventas'),
     path('form_venta/', views.form_venta, name='form_venta'),
+    path('venta_detalle/<int:id>/', views.venta_detalle, name='venta_detalle'),
+    path('eliminar_venta/<int:id>/', views.eliminar_venta, name='eliminar_venta'),
 
 #reservas
     path('reservas/', views.reservas, name='reservas'),

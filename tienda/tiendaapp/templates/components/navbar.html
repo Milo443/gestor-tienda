@@ -24,13 +24,6 @@
                 </a>
             </li>
 
-            {% comment %} <li class="sidebar-item">
-                <a href="#" class="sidebar-link">
-                    <i class="fas fa-shopping-cart"></i> 
-                    <span>Ventas y Reservas<span>
-                </a>
-            </li> {% endcomment %}
-
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                     data-bs-target="#cart" aria-expanded="false" aria-controls="cart">
@@ -56,12 +49,12 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
+            {% comment %} <li class="sidebar-item">
                 <a href="#" class="sidebar-link">
                     <i class="fas fa-chart-line"></i> 
                     <span>Informes y Analisis<span>
                 </a>
-            </li>
+            </li> {% endcomment %}
         </ul>
         <div class="sidebar-footer">
             <a href="{%url 'logout'%}" class="sidebar-link">
